@@ -1,5 +1,9 @@
 # 音声播放器 / YinShengPlayer
 
+**直接安装 / Download APK：**[下载 Android 正式版](https://github.com/asuka030408/YinShengPlayer/releases/latest)。发布的 APK 已内置 SenseVoice、Whisper 和 VAD 离线模型，安装后使用离线识别不需要另外下载模型。
+
+**Ready-to-install Android APK:** [Latest release](https://github.com/asuka030408/YinShengPlayer/releases/latest). The packaged APK includes the SenseVoice, Whisper, and VAD offline models; no separate model download is needed to use offline recognition after installation.
+
 ## 中文介绍
 
 音声播放器是一款使用 Android Studio 开发的外语音频播放器。它可以调用在线 API 提前识别音频内容并生成译文，也内置 SenseVoice 和 Whisper 两种离线 ASR 引擎，方便在不同网络环境下使用。
