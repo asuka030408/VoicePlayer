@@ -1,4 +1,4 @@
-# 音声播放器 / YinShengPlayer
+# 音声播放器 / Voice Player
 
 **直接安装 / Download APK：**[下载 Android 正式版](https://github.com/asuka030408/YinShengPlayer/releases/latest)。发布的 APK 已内置 SenseVoice、Whisper 和 VAD 离线模型，安装后使用离线识别不需要另外下载模型。
 
@@ -21,9 +21,9 @@
 
 ## English introduction
 
-YinShengPlayer is a foreign-language audio player developed with Android Studio. It can use online APIs to transcribe audio ahead of playback and translate the resulting text. It also includes two offline ASR options, SenseVoice and Whisper, for use in different network conditions.
+Voice Player is a foreign-language audio player developed with Android Studio. It can use online APIs to transcribe audio ahead of playback and translate the resulting text. It also includes two offline ASR options, SenseVoice and Whisper, for use in different network conditions.
 
-The app processes audio in segments. Playback can begin as soon as the first segment is ready, while later segments are transcribed and translated in the background. This avoids waiting for the entire recording to be processed. By producing subtitles and translations as you listen, YinShengPlayer offers a near real-time listening experience for foreign-language songs, podcasts, and other long-form audio.
+The app processes audio in segments. Playback can begin as soon as the first segment is ready, while later segments are transcribed and translated in the background. This avoids waiting for the entire recording to be processed. By producing subtitles and translations as you listen, Voice Player offers a near real-time listening experience for foreign-language songs, podcasts, and other long-form audio.
 
 ### Features
 
