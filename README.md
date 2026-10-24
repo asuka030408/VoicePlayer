@@ -1,8 +1,8 @@
 # 音声播放器 / Voice Player
 
-**直接安装 / Download APK：**[下载 Android 正式版](https://github.com/asuka030408/YinShengPlayer/releases/latest)。发布的 APK 已内置 SenseVoice、Whisper 和 VAD 离线模型，安装后使用离线识别不需要另外下载模型。
+**直接安装 / Download APK：**[下载 Android 正式版](https://github.com/asuka030408/VoicePlayer/releases/latest)。发布的 APK 已内置 SenseVoice、Whisper 和 VAD 离线模型，安装后使用离线识别不需要另外下载模型。
 
-**Ready-to-install Android APK:** [Latest release](https://github.com/asuka030408/YinShengPlayer/releases/latest). The packaged APK includes the SenseVoice, Whisper, and VAD offline models; no separate model download is needed to use offline recognition after installation.
+**Ready-to-install Android APK:** [Latest release](https://github.com/asuka030408/VoicePlayer/releases/latest). The packaged APK includes the SenseVoice, Whisper, and VAD offline models; no separate model download is needed to use offline recognition after installation.
 
 ## 中文介绍
 
