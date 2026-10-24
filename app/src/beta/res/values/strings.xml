@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 测试版 flavor 覆盖：与正式版在桌面上的名称区分开，避免装错 -->
+    <string name="app_name">音声播放器 Beta</string>
+</resources>

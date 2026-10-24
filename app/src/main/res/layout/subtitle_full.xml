@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 全屏滚动字幕页（类似网易云滚动歌词）：点击播放界面字幕区进入，✕ 返回 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/subtitle_full_overlay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F210101A"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- 顶部栏 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/full_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="歌词字幕"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#F0EFF5"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/full_trans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="翻译"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/bg_tab_normal"
+                android:layout_marginRight="8dp"/>
+
+            <TextView
+                android:id="@+id/full_close"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:text="✕"
+                android:textSize="22sp"
+                android:textColor="#F0EFF5"/>
+        </LinearLayout>
+
+        <!-- 滚动字幕列表：当前句高亮并自动保持居中 -->
+        <ScrollView
+            android:id="@+id/full_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/full_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/full_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="点击 ✕ 返回 · 上下滑动查看全部字幕"
+            android:textSize="11sp"
+            android:textColor="#6B6880"/>
+    </LinearLayout>
+</FrameLayout>

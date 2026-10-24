@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#12101A"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="← 返回"
+                android:textSize="15sp"
+                android:textColor="#B79CFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#F0EFF5"
+                android:layout_marginLeft="12dp"/>
+        </LinearLayout>
+
+        <!-- 悬浮字幕（普通字幕开关仍在主界面底部） -->
+        <Switch
+            android:id="@+id/sw_floating_subtitles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:padding="12dp"
+            android:text="悬浮字幕（原文＋译文）"
+            android:textColor="#F0EFF5"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="默认关闭。开启并授予悬浮窗权限后，播放时可在其他应用上方查看字幕。拖动标题移动，点击 × 可关闭；暂停播放时隐藏。已有译文会一起显示，新译文需开启翻译并配置密钥。"
+            android:textColor="#BEB4CE"
+            android:textSize="13sp" />
+        <LinearLayout style="@style/SettingRow">
+            <TextView style="@style/RowLabel" android:text="启用离线 ASR"/>
+            <Switch android:id="@+id/sw_offline_asr" style="@style/RowSwitch"/>
+        </LinearLayout>
+        <TextView style="@style/SectionTitle" android:text="识别引擎"/>
+        <LinearLayout style="@style/SettingRow">
+            <TextView style="@style/RowLabel" android:text="离线 ASR 引擎"/>
+            <Spinner
+                android:id="@+id/sp_asr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_normal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="#F0EFF5"
+                android:textSize="15sp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:padding="10dp"
+            android:text="离线引擎在手机本地推理，音频绝不上传，免费、隐私。SenseVoice：默认，速度快，中文效果好。Whisper：抗噪更强，快节奏/大伴奏歌曲识别更稳，但速度较慢。"
+            android:textSize="12sp"
+            android:textColor="#9A97AD"
+            android:background="@drawable/bg_tab_normal"/>
+
+        <!-- 联网 ASR 引擎（云端识别，涉及计费与隐私，默认关闭） -->
+        <LinearLayout style="@style/SettingRow">
+            <TextView style="@style/RowLabel" android:text="联网 ASR 引擎"/>
+            <Switch android:id="@+id/sw_cloud_asr" style="@style/RowSwitch"/>
+        </LinearLayout>
+        <LinearLayout style="@style/SettingRow">
+            <TextView style="@style/RowLabel" android:text="云端厂商"/>
+            <Spinner
+                android:id="@+id/sp_cloud_asr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_normal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="#F0EFF5"
+                android:textSize="15sp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:padding="10dp"
+            android:text="联网引擎把音频分片上传到所选厂商识别，识别更准（尤其日文/嘈杂环境），但按音频时长计费且音频会经过云端。仅用于「后台生成字幕」；开启开关时有确认弹窗。★ 不得用于 18+ 内容：涉黄内容会被平台审核并封禁账号。"
+            android:textSize="12sp"
+            android:textColor="#B79CFF"
+            android:background="@drawable/bg_tab_normal"/>
+
+        <!-- 腾讯云（录音文件识别） -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="★ 腾讯云：录音文件识别（大模型 2.0），约 0.013 元/分钟。注册：https://console.cloud.tencent.com → 访问管理 → API 密钥管理，创建 SecretId/SecretKey。"
+            android:textSize="12sp"
+            android:textColor="#B79CFF"
+            android:background="@drawable/bg_tab_normal"/>
+        <EditText
+            android:id="@+id/et_tencent_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="腾讯云 SecretId"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+        <EditText
+            android:id="@+id/et_tencent_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="腾讯云 SecretKey"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+
+        <!-- 阿里云（百炼 qwen3-asr-flash，同步识别，约 0.8 元/小时） -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="★ 阿里云：百炼 qwen3-asr-flash（同步识别），约 0.8 元/小时。注册：https://bailian.console.aliyun.com → API-KEY 获取（与翻译共用一把）。"
+            android:textSize="12sp"
+            android:textColor="#B79CFF"
+            android:background="@drawable/bg_tab_normal"/>
+        <EditText
+            android:id="@+id/et_alibaba_appkey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="阿里云百炼 API Key（与翻译共用）"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+
+        <!-- 讯飞（语音听写） -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="★ 讯飞：语音听写 iat，新用户免费 0.5 万次/3 个月，之后约 16.5~23 元/万次（中文）。注册：https://console.xfyun.cn → 创建「语音听写」应用拿 APPID/APIKey/APISecret。"
+            android:textSize="12sp"
+            android:textColor="#B79CFF"
+            android:background="@drawable/bg_tab_normal"/>
+        <EditText
+            android:id="@+id/et_iflytek_appid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="讯飞 APPID"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+        <EditText
+            android:id="@+id/et_iflytek_apikey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="讯飞 APIKey"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+        <EditText
+            android:id="@+id/et_iflytek_apisecret"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="讯飞 APISecret"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+
+        <!-- 字幕 -->
+        <TextView style="@style/SectionTitle" android:text="字幕"/>
+        <LinearLayout style="@style/SettingRow">
+            <TextView style="@style/RowLabel" android:text="显示字幕"/>
+        </LinearLayout>
+
+        <!-- 字幕切片时长（半分钟步进） -->
+        <LinearLayout style="@style/SettingRow">
+            <TextView style="@style/RowLabel" android:text="字幕切片时长"/>
+            <Spinner
+                android:id="@+id/sp_chunk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_normal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="#F0EFF5"
+                android:textSize="15sp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:padding="10dp"
+            android:text="切片越短：首段字幕越快就绪，适合说话快/音频长的场景；切片越长：分片数更少、整体更省算力。默认 1 分钟。调整后已生成的字幕需重新生成（缓存自动区分）。中文内容自动跳过翻译，只显示原文。"
+            android:textSize="12sp"
+            android:textColor="#9A97AD"
+            android:background="@drawable/bg_tab_normal"/>
+
+        <!-- 字幕时间偏移（校准蓝牙/播放延迟导致的错位） -->
+        <LinearLayout style="@style/SettingRow">
+            <TextView style="@style/RowLabel" android:text="字幕时间偏移"/>
+            <Spinner
+                android:id="@+id/sp_offset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_normal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="#F0EFF5"
+                android:textSize="15sp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:padding="10dp"
+            android:text="蓝牙耳机等输出有延迟时，字幕可能比声音早/晚。声音比字幕晚（字幕先出）→ 选「提前」；字幕比声音晚（字幕后出）→ 选「延后」。半秒步进，按实际效果微调。"
+            android:textSize="12sp"
+            android:textColor="#9A97AD"
+            android:background="@drawable/bg_tab_normal"/>
+
+        <!-- 翻译（百度国内直连 / DeepSeek LLM） -->
+        <TextView style="@style/SectionTitle" android:text="翻译"/>
+        <LinearLayout style="@style/SettingRow">
+            <TextView style="@style/RowLabel" android:text="翻译引擎"/>
+            <Spinner
+                android:id="@+id/sp_trans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_normal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="#F0EFF5"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="★ 百度：国内直连免费版（5 万字符/月）。注册：https://fanyi-api.baidu.com → 管理控制台 → 通用文本翻译，填 APP ID 与密钥。"
+            android:textSize="12sp"
+            android:textColor="#B79CFF"
+            android:background="@drawable/bg_tab_normal"/>
+
+        <EditText
+            android:id="@+id/et_baidu_appid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="百度翻译 APP ID"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/et_baidu_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="百度翻译 密钥（Secret Key）"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:text="★ DeepSeek：国内直连 LLM，按 token 计费极低（每百万 token 约 2 元）。注册：https://platform.deepseek.com → API Keys 创建。批量翻译更快更连贯。"
+            android:textSize="12sp"
+            android:textColor="#B79CFF"
+            android:background="@drawable/bg_tab_normal"/>
+
+        <EditText
+            android:id="@+id/et_deepseek_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="DeepSeek API Key（sk-...）"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:text="★ 智谱 GLM-4-Flash：免费模型。注册：https://open.bigmodel.cn → API 密钥。★ 填了密钥的厂商会自动参与兜底：首选引擎额度用尽时自动切下一个，同一句只翻一次、只扣一次额度。"
+            android:textSize="12sp"
+            android:textColor="#B79CFF"
+            android:background="@drawable/bg_tab_normal"/>
+
+        <EditText
+            android:id="@+id/et_zhipu_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="智谱 API Key（免费 GLM-4-Flash）"
+            android:inputType="text"
+            android:textColor="#F0EFF5"
+            android:textColorHint="#6B6880"
+            android:background="@drawable/bg_tab_normal"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:text="★ 阿里通义 qwen-turbo：与「联网 ASR → 阿里云」共用上方填写的百炼 API Key，无需重复填写。"
+            android:textSize="12sp"
+            android:textColor="#B79CFF"
+            android:background="@drawable/bg_tab_normal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="12dp"
+            android:text="学习 Demo 说明：ASR（SenseVoice/Whisper）为本地推理全离线；翻译只把识别出的文字发给所选服务，音频绝不上传；有缓存的分片不重复翻译。中文内容自动跳过翻译。"
+            android:textSize="12sp"
+            android:textColor="#9A97AD"
+            android:background="@drawable/bg_tab_normal"/>
+
+        <!-- 保存设置 -->
+        <TextView
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:padding="14dp"
+            android:gravity="center"
+            android:text="保存设置"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_tab_selected"/>
+
+        <!-- 署名 + 版本号（方便区分测试版本） -->
+        <TextView
+            android:id="@+id/txt_signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:text="傍晚起床"
+            android:textSize="14sp"
+            android:textColor="#8A86A3"/>
+
+        <TextView
+            android:id="@+id/txt_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="v1.0.0"
+            android:textSize="12sp"
+            android:textColor="#5E5A73"/>
+    </LinearLayout>
+</ScrollView>

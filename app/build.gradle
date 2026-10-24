@@ -1,0 +1,74 @@
+plugins {
+    id 'com.android.application'
+}
+android {
+    namespace 'com.yinsheng.player'
+    compileSdk 36
+
+    defaultConfig {
+        // applicationId / versionCode / versionName 由 flavor 各自定义（release=正式版，test=测试版）
+        minSdk 24
+        targetSdk 36
+        ndk {
+            // 学习 Demo 以真机为主：仅保留 ARM 架构，APK 体积更小
+            abiFilters "arm64-v8a", "armeabi-v7a"
+        }
+    }
+    // 正式版与测试版双通道：包名、版本号、应用名各自独立，互不覆盖
+    // （flavor 名不能与 BuildType 同名、不能以 test 开头，故正式版用 official、测试版用 beta）
+    flavorDimensions "channel"
+    productFlavors {
+        official {
+            dimension "channel"
+            applicationId "com.yinsheng.player"
+            versionCode 5   // 覆盖已装正式版(versionCode 3)，必须更大
+            versionName "1.6.0"
+        }
+        beta {
+            dimension "channel"
+            applicationId "com.yinsheng.player.test"
+            versionCode 17
+            versionName "1.6.0-beta"
+        }
+    }
+    buildFeatures {
+        buildConfig true   // 设置页显示版本号需要 BuildConfig
+    }
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    signingConfigs {
+        upgrade {
+            storeFile file(System.getenv('YINSHENG_SIGNING_STORE') ?: 'missing-signing-store')
+            storePassword System.getenv('YINSHENG_STORE_PASSWORD') ?: 'android'
+            keyAlias System.getenv('YINSHENG_KEY_ALIAS') ?: 'androiddebugkey'
+            keyPassword System.getenv('YINSHENG_KEY_PASSWORD') ?: 'android'
+        }
+    }
+    buildTypes {
+        release {
+            debuggable false
+            signingConfig signingConfigs.upgrade
+            minifyEnabled false
+        }
+    }
+    androidResources {
+        // onnx 已是高熵二进制，不压缩直接打包：构建更快，运行时也可直接读取
+        noCompress 'onnx'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // sherpa-onnx 本地 AAR（ASR: SenseVoice + VAD: silero）——引擎内部为 Kotlin 实现，需显式带 kotlin-stdlib
+    implementation files('libs/sherpa-onnx-1.13.8.aar')
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
+    // 下拉刷新（SwipeRefreshLayout）
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    // 联网 ASR：讯飞语音听写走 WebSocket，需要 okhttp
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+}
